@@ -1,0 +1,7 @@
+# aws-cdk.core==1.195.0
+# aws-cdk.aws-rds==1.195.0
+# aws-cdk.aws-s3==1.195.0
+# aws-cdk.aws-secretsmanager==1.195.0
+# aws-cdk.region-info==1.195.0
+aws-cdk-lib
+awscli-local[ver2]

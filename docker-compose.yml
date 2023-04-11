@@ -1,0 +1,22 @@
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: cdk-localstack
+    ports:
+      - '4566:4566'
+    environment:
+      - SERVICES=cloudformation,s3,sqs,sts,rds
+      - DEBUG=0
+  cdk:
+    build:
+      context: cdk
+    container_name: cdk
+    environment:
+      - AWS_ACCESS_KEY_ID=x
+      - AWS_SECRET_ACCESS_KEY=x
+      - AWS_REGION=us-east-1
+      - EDGE_PORT=4566
+      - LOCALSTACK_HOSTNAME=cdk-localstack #CDKLOCAL
+      - LOCALSTACK_HOST=cdk-localstack #AWSLOCAL
+    volumes:
+      - ./cdk/app:/home/cdk/app
