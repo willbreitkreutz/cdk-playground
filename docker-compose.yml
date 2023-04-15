@@ -5,7 +5,7 @@ services:
     ports:
       - '4566:4566'
     environment:
-      - SERVICES=cloudformation,s3,sqs,sts,rds
+      - SERVICES=cloudformation,s3,sqs,sts,rds,ssm
       - DEBUG=0
   cdk:
     build:

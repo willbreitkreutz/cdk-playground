@@ -72,6 +72,12 @@ cdklocal init testapp --language python
 
 <br><br>
 
+# Localstack services status
+
+http://localhost:4566/\_localstack/health
+
+<br><br>
+
 # Useful commands
 
 Use `cdklocal` for Localstack
@@ -90,3 +96,4 @@ Use `cdklocal` for Localstack
 # Resources:
 
 - Your first AWS CDK app - https://docs.aws.amazon.com/cdk/v2/guide/hello_world.html
+- Constructs Hub - https://constructs.dev/

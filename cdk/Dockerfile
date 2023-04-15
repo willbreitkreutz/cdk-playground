@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ARG AWS_CDK_VERSION=2.67.0
+ARG AWS_CDK_VERSION=2.74.0
 
 RUN useradd cdk
 

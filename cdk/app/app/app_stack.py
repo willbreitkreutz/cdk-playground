@@ -10,6 +10,7 @@ from aws_cdk import (
     aws_sqs as sqs,
     aws_sns as sns,
     aws_sns_subscriptions as subs,
+    aws_s3 as s3
 )
 
 
@@ -20,30 +21,31 @@ class AppStack(Stack):
         ## Get vpc
         # Information from environment is used to get context information
         # so it has to be defined for the stack
-        # stack = AppStack(
-        #     self, "AppStack", env=Environment(account="account_id", region="region")
-        # )
+        
         stack = Stack(
             self, "app", env=Environment(account="0000000000", region="us-east-1")
         )
-        # Retrieve VPC information
-        vpc = ec2.Vpc.from_lookup(
-            stack,
-            "VPC",
-            # This imports the default VPC but you can also
-            # specify a 'vpcName' or 'tags'.
-            is_default=True,
-        )
 
-        print("--VPC info--")
-        print(vpc.to_string())
-        print(vpc.vpc_cidr_block)
-        print(vpc.private_subnets)
-        print(vpc.public_subnets)
-        for ps in vpc.private_subnets:
-            print(ps.to_string())
-        for ps in vpc.public_subnets:
-            print(ps.to_string())
+        s3.Bucket(self, "MyFirstBucket")
+
+        # Retrieve VPC information
+        # vpc = ec2.Vpc.from_lookup(
+        #     stack,
+        #     "VPC",
+        #     # This imports the default VPC but you can also
+        #     # specify a 'vpcName' or 'tags'.
+        #     is_default=True,
+        # )
+
+        # print("--VPC info--")
+        # print(vpc.to_string())
+        # print(vpc.vpc_cidr_block)
+        # print(vpc.private_subnets)
+        # print(vpc.public_subnets)
+        # for ps in vpc.private_subnets:
+        #     print(ps.to_string())
+        # for ps in vpc.public_subnets:
+        #     print(ps.to_string())
         # Iterate the private subnets
         # selection = vpc.select_subnets(subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT)
 
