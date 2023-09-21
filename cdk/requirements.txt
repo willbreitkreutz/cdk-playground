@@ -4,4 +4,5 @@
 # aws-cdk.aws-secretsmanager==1.195.0
 # aws-cdk.region-info==1.195.0
 aws-cdk-lib>=2.96.2
+constructs>=10.0.0,<11.0.0
 awscli-local[ver2]
