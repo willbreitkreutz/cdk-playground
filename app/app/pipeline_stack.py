@@ -1,8 +1,9 @@
 import aws_cdk as cdk
 from constructs import Construct
-from ..stages.deploy_stage import DeployStage
+from .stages.deploy_stage import DeployStage
 
-class Pipeline(cdk.Stack):
+
+class PipelineStack(cdk.Stack):
     def __init__(self, scope: Construct, construct_id: str, environment: str, **kwargs):
         super().__init__(scope, construct_id, **kwargs)
 
@@ -28,7 +29,7 @@ class Pipeline(cdk.Stack):
                 input=cdk.pipelines.CodePipelineSource.git_hub(
                     repo_string=ctx["pipeline_repo"],
                     branch=ctx["pipeline_branch"],
-                    authentication=oauth
+                    authentication=oauth,
                 ),
                 commands=[
                     "npm install -g aws-cdk cdk-assume-role-credential-plugin",
@@ -36,11 +37,15 @@ class Pipeline(cdk.Stack):
                     "cdk synth -v",
                 ],
             ),
-
         )
 
-        deployStage = DeployStage(scope=self, id='myDeployStage', ctx=ctx)
-        pipeline.add_stage(deployStage)
+        deployStage = DeployStage(
+            scope=self,
+            id="myDeployStage",
+            ctx=ctx,
+            env=kwargs["env"],
+        )
 
+        pipeline.add_stage(deployStage)
 
         pipeline.build_pipeline()

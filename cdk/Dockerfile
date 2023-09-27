@@ -13,7 +13,7 @@ COPY ./requirements.txt /home/cdk/
 WORKDIR /home/cdk
 
 RUN apt-get update && apt-get install -y \
-curl python3-pip python3-venv git unzip \
+curl python3-pip python3-venv git unzip jq \
 && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 && apt-get install -y nodejs \
 && npm install -g aws-cdk-local aws-cdk@${AWS_CDK_VERSION} \
